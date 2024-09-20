@@ -19,6 +19,7 @@ public class ColorTouch implements View.OnTouchListener{
         float x = event.getX();
         float y = event.getY();
 
+        //Coordinates for triangle
         float a1 = 500; // Bottom-left point
         float b1 = 550;
         float a2 = 825; // Bottom-right point
