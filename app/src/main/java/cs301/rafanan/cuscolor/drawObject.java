@@ -6,15 +6,17 @@ import android.view.SurfaceView;
 import android.graphics.*;
 
 public class drawObject extends SurfaceView {
-    private final Paint paintRed, paintBlue, paintWhite, paintYellow;
+    private Paint paintLightRed, paintBlue, paintWhite, paintYellow
+            ,paintMahogany, paintBlack, paintForestGreen;
 
     public drawObject(Context context, AttributeSet attrs) {
         super(context, attrs);
         setWillNotDraw(false);
+        setBackgroundColor(Color.WHITE);
 
-        paintRed = new Paint();
-        paintRed.setColor(0xFFFF0000);
-        paintRed.setStyle(Paint.Style.FILL);
+        paintLightRed = new Paint();
+        paintLightRed.setColor(0xA5FF0000);
+        paintLightRed.setStyle(Paint.Style.FILL);
 
         paintBlue = new Paint();
         paintBlue.setColor(0xFF0000FF);
@@ -27,11 +29,24 @@ public class drawObject extends SurfaceView {
         paintYellow = new Paint();
         paintYellow.setColor(0xFFFFFF00);
         paintYellow.setStyle(Paint.Style.FILL);
+
+        paintMahogany = new Paint();
+        paintMahogany.setColor(0xFFC4A484);
+        paintMahogany.setStyle(Paint.Style.FILL);
+
+        paintBlack = new Paint();
+        paintBlack.setColor(0xFF000000);
+        paintBlack.setStyle(Paint.Style.FILL);
+
+        paintForestGreen = new Paint();
+        paintForestGreen.setColor(0xFF228B22);
+        paintForestGreen.setStyle(Paint.Style.FILL);
     }
 
     @Override
     protected void onDraw(Canvas canvas){
         Path trapezoid = new Path();
+        Path trianglePath = new Path();
 
         /*
          *External Citation
@@ -41,11 +56,11 @@ public class drawObject extends SurfaceView {
          * Solution:
          *
          */
-        int shiftY = -100;  // Vertical shift
-        float scaleX = 1.5f;  // Horizontal scaling
-        float centerX = (600 + 1100) / 2.0f;  // Center point for scaling reference
+        int shiftY = -100;
+        float scaleX = 1.5f;
+        float centerX = (600 + 1100) / 2.0f;
 
-        // Calculate new x coordinates after scaling
+        //new x coordinates after scaling
         float x1 = centerX + (600 - centerX) * scaleX;
         float x2 = centerX + (1100 - centerX) * scaleX;
         float x3 = centerX + (1000 - centerX) * scaleX;
@@ -56,13 +71,33 @@ public class drawObject extends SurfaceView {
         trapezoid.lineTo(x2, 700 + shiftY); //bottom-right corner
         trapezoid.lineTo(x3, 800 + shiftY); //top-right corner
         trapezoid.lineTo(x4, 800 + shiftY); //top-left corner
-        trapezoid.close();  // Close the path
+        trapezoid.close();
 
-        // Draw the upside-down trapezoid
-        canvas.drawPath(trapezoid, paintWhite);
+        // Define the three points of the triangle
+        float a1 = 500; // Bottom-left point
+        float b1 = 550;
+        float a2 = 825; // Bottom-right point
+        float b2 = 550;
+        float a3 = 825; // Top-right point
+        float b3 = 300;
+
+        trianglePath.moveTo(a1, b1); // Move to the first point (bottom-left corner)
+        trianglePath.lineTo(a2, b2); // Draw line to the bottom-right corner
+        trianglePath.lineTo(a3, b3); // Draw line to the top-right corner
+        trianglePath.close();
+
+        // Define the rectangle bounds for the semicircle
+        RectF semicircleRect = new RectF(100, 650, 350, 750); // Adjust as needed
+
+        // Draw the arc (concave downward)
+        canvas.drawArc(semicircleRect, 0, -180, true, paintForestGreen);
+
+        canvas.drawPath(trianglePath, paintLightRed);
+        canvas.drawPath(trapezoid, paintMahogany);
 
         canvas.drawRect(0, 700, 1600, 1100, paintBlue);
-        canvas.drawOval(100, 150, 300, 350, paintYellow);
+        canvas.drawRect(825, 300, 850, 600, paintBlack);
+        canvas.drawOval(100, 100, 300, 300, paintYellow);
     }
 }
 
