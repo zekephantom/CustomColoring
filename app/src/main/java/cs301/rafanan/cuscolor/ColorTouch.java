@@ -4,14 +4,17 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.SeekBar;
 import android.graphics.Color;
+import android.widget.TextView;
 
 public class ColorTouch implements View.OnTouchListener{
     private SeekBar redSeekBar, greenSeekBar, blueSeekBar;
+    private TextView showElement;
 
-    public ColorTouch(SeekBar redSeekBar, SeekBar greenSeekBar, SeekBar blueSeekBar){
+    public ColorTouch(SeekBar redSeekBar, SeekBar greenSeekBar, SeekBar blueSeekBar, TextView showElement){
         this.redSeekBar = redSeekBar;
         this.greenSeekBar = greenSeekBar;
         this.blueSeekBar = blueSeekBar;
+        this.showElement = showElement;
     }
 
     @Override
@@ -31,10 +34,13 @@ public class ColorTouch implements View.OnTouchListener{
         if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_UP) {
             if (isPointInTriangle(x, y, a1, b1, a2, b2, a3, b3)) {
                 setSeekBarFromColor(0xA5FF0000);  // Light Red
+                setTextView("Sail");
             } else if (isPointInRectangle(x, y)) {
                 setSeekBarFromColor(0xFF0000FF);
+                setTextView("Ocean/Sea");
             } else if (isPointInTrapezoid(x, y)) {
-                setSeekBarFromColor(0xFFC4A484);  // Mahogany
+                setSeekBarFromColor(0xFFC4A484);
+                setTextView("Ship Hull");
             }
         }
         return true;  // Return true to indicate the event was handled
@@ -49,6 +55,11 @@ public class ColorTouch implements View.OnTouchListener{
         greenSeekBar.setProgress(green);
         blueSeekBar.setProgress(blue);
     }
+
+    private void setTextView(String TV) {
+        showElement.setText(TV);
+    }
+
     public boolean isPointInTriangle(float px, float py, float ax, float ay, float bx, float by, float cx, float cy) {
         // Calculate the vectors
         float v0x = cx - ax;
@@ -85,5 +96,9 @@ public class ColorTouch implements View.OnTouchListener{
     private boolean isPointInTrapezoid(float x, float y) {
         // Trapezoid region (replace with real trapezoid boundary logic)
         return (x >= 600 && x <= 1100 && y >= 700 && y <= 800);
+    }
+
+    public boolean isPointInCircle(float px, float py) {
+        return true;
     }
 }

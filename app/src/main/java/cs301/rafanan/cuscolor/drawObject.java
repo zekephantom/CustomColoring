@@ -87,7 +87,7 @@ public class drawObject extends SurfaceView {
         trianglePath.lineTo(a3, b3); // Draw line to the top-right corner
         trianglePath.close();
 
-        // Define the rectangle bounds for the semicircle
+        // Define the rectangle bounds for the semicircle, island
         RectF semicircleRect = new RectF(100, 650, 350, 750); // Adjust as needed
 
         // Draw the arc (concave downward)

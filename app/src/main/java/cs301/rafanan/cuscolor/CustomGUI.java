@@ -2,6 +2,7 @@ package cs301.rafanan.cuscolor;
 
 import android.os.Bundle;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,7 @@ public class CustomGUI extends AppCompatActivity {
 
     private SeekBar redSeekBar, greenSeekBar, blueSeekBar;
     private drawObject drawingSurface;
+    private TextView showElement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -26,10 +28,10 @@ public class CustomGUI extends AppCompatActivity {
         redSeekBar = findViewById(R.id.redSeek);
         greenSeekBar = findViewById(R.id.greenSeek);
         blueSeekBar = findViewById(R.id.blueSeek);
-
+        showElement = findViewById(R.id.textView2);
         drawingSurface = findViewById(R.id.surfaceView);
 
-        ColorTouch touchListen = new ColorTouch(redSeekBar, greenSeekBar,blueSeekBar);
+        ColorTouch touchListen = new ColorTouch(redSeekBar, greenSeekBar,blueSeekBar, showElement);
         drawingSurface.setOnTouchListener(touchListen);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.custom), (v, insets) -> {
