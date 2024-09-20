@@ -8,8 +8,7 @@
     <LinearLayout
         android:layout_width="50dp"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,7 +66,7 @@
             android:orientation="horizontal">
 
             <SeekBar
-                android:id="@+id/seekBar"
+                android:id="@+id/redSeek"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:gravity="top|center" />
@@ -80,7 +79,7 @@
             android:layout_weight="0.5">
 
             <SeekBar
-                android:id="@+id/seekBar2"
+                android:id="@+id/greenSeek"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -92,7 +91,7 @@
             android:layout_weight="0.5">
 
             <SeekBar
-                android:id="@+id/seekBar3"
+                android:id="@+id/blueSeek"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -101,19 +100,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1.5">
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-        </LinearLayout>
+            android:layout_weight="1.5"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_weight="1">
@@ -122,5 +114,6 @@
             android:id="@+id/surfaceView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
     </LinearLayout>
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.SurfaceView;
 import android.graphics.*;
 
+
 public class drawObject extends SurfaceView {
     private Paint paintLightRed, paintBlue, paintWhite, paintYellow
             ,paintMahogany, paintBlack, paintForestGreen;
