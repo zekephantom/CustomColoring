@@ -58,20 +58,22 @@ public class drawObject extends SurfaceView {
          *
          */
         int shiftY = -100;
-        float scaleX = 1.5f;
-        float centerX = (600 + 1100) / 2.0f;
 
-        //new x coordinates after scaling
-        float x1 = centerX + (600 - centerX) * scaleX;
-        float x2 = centerX + (1100 - centerX) * scaleX;
-        float x3 = centerX + (1000 - centerX) * scaleX;
-        float x4 = centerX + (700 - centerX) * scaleX;
+        //Trapezoid coordinates
+        float x1 = 475;  // Bottom-left corner
+        float y1 = 600;
+        float x2 = 1225; // Bottom-right corner
+        float y2 = 600;
+        float x3 = 1075; // Top-right corner
+        float y3 = 700;
+        float x4 = 625;  // Top-left corner
+        float y4 = 700;
 
         // Flips the trapezoid upside down by swapping the y-values of top and bottom points
-        trapezoid.moveTo(x1, 700 + shiftY); //bottom-left corner
-        trapezoid.lineTo(x2, 700 + shiftY); //bottom-right corner
-        trapezoid.lineTo(x3, 800 + shiftY); //top-right corner
-        trapezoid.lineTo(x4, 800 + shiftY); //top-left corner
+        trapezoid.moveTo(x1, y1); // Bottom-left corner
+        trapezoid.lineTo(x2, y2); // Bottom-right corner
+        trapezoid.lineTo(x3, y3); // Top-right corner
+        trapezoid.lineTo(x4, y4); // Top-left corner
         trapezoid.close();
 
         // Define the three points of the triangle
@@ -89,15 +91,15 @@ public class drawObject extends SurfaceView {
 
         // Define the rectangle bounds for the semicircle, island
         RectF semicircleRect = new RectF(100, 650, 350, 750); // Adjust as needed
-
         // Draw the arc (concave downward)
         canvas.drawArc(semicircleRect, 0, -180, true, paintForestGreen);
 
         canvas.drawPath(trianglePath, paintLightRed);
         canvas.drawPath(trapezoid, paintMahogany);
 
-        canvas.drawRect(0, 700, 1600, 1100, paintBlue);
-        canvas.drawRect(825, 300, 850, 600, paintBlack);
+        canvas.drawRect(0, 700, 1600, 1100, paintBlue); //draws the ocean
+        canvas.drawRect(825, 300, 850, 600, paintBlack); //draws the mast
+
         canvas.drawOval(100, 100, 300, 300, paintYellow);
     }
 }
