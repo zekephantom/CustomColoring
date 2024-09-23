@@ -19,6 +19,7 @@ public class ColorTouch implements View.OnTouchListener{
     private SeekBar redSeekBar, greenSeekBar, blueSeekBar;
     private TextView showElement, redNum, greenNum, blueNum;
 
+
     public ColorTouch(SeekBar redSeekBar, SeekBar greenSeekBar, SeekBar blueSeekBar, TextView showElement, TextView redNum, TextView greenNum, TextView blueNum) {
         this.redSeekBar = redSeekBar;
         this.greenSeekBar = greenSeekBar;
@@ -29,6 +30,9 @@ public class ColorTouch implements View.OnTouchListener{
         this.blueNum = blueNum;
     }
 
+    /*
+    * onTouch method gives functionality to widgets from user input.
+    * */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         float x = event.getX();
@@ -131,11 +135,11 @@ public class ColorTouch implements View.OnTouchListener{
         float dot12 = v1x * v2x + v1y * v2y;
 
         // Compute barycentric coordinates
-        float denom = (dot00 * dot11 - dot01 * dot01);
-        if (denom == 0) return false;  // Avoid division by zero
-        float invDenom = 1 / denom;
-        float u = (dot11 * dot02 - dot01 * dot12) * invDenom;
-        float v = (dot00 * dot12 - dot01 * dot02) * invDenom;
+        float bary_coor = (dot00 * dot11 - dot01 * dot01);
+        if (bary_coor == 0) return false;  // Avoid division by zero
+        float inverse_bary = 1 / bary_coor;
+        float u = (dot11 * dot02 - dot01 * dot12) * inverse_bary;
+        float v = (dot00 * dot12 - dot01 * dot02) * inverse_bary;
 
         // Check if point is in the red sail
         return (u >= 0) && (v >= 0) && (u + v < 1);

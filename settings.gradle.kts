@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Raf_CustomColor"
+rootProject.name = "Rafanan_CusColor"
 include(":app")
