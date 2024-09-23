@@ -5,7 +5,13 @@ import android.util.AttributeSet;
 import android.view.SurfaceView;
 import android.graphics.*;
 
-
+/**
+ * Author: Ezekiel Rafanan
+ * Date: 22 September 2024
+ *
+ * This Java file basically draws the elements onto SurfaceView.
+ *
+ */
 public class drawObject extends SurfaceView {
     private Paint paintLightRed, paintBlue, paintWhite, paintYellow
             ,paintMahogany, paintBlack, paintForestGreen;
@@ -48,7 +54,7 @@ public class drawObject extends SurfaceView {
     protected void onDraw(Canvas canvas){
         Path trapezoid = new Path();
         Path trianglePath = new Path();
-
+        Path island = new Path();
         /*
          *External Citation
          * Date: 19 September 2024
@@ -76,7 +82,7 @@ public class drawObject extends SurfaceView {
         trapezoid.lineTo(x4, y4); // Top-left corner
         trapezoid.close();
 
-        // Define the three points of the triangle
+        // Define the three points of the triangle (sail)
         float a1 = 500; // Bottom-left point
         float b1 = 550;
         float a2 = 825; // Bottom-right point
@@ -89,18 +95,26 @@ public class drawObject extends SurfaceView {
         trianglePath.lineTo(a3, b3); // Draw line to the top-right corner
         trianglePath.close();
 
-        // Define the rectangle bounds for the semicircle, island
-        RectF semicircleRect = new RectF(100, 650, 350, 750); // Adjust as needed
-        // Draw the arc (concave downward)
-        canvas.drawArc(semicircleRect, 0, -180, true, paintForestGreen);
+        //Island coordinates
+        float leftBottomX = 100;  // Bottom-left corner
+        float bottomY = 700;  // Bottom of the trapezoid (same Y as the bottom of the semicircle)
+        float rightBottomX = 350;  // Bottom-right corner
+        float leftTopX = 150;  // Top-left corner (narrower top)
+        float topY = 650;  // Top of the trapezoid (same Y as the top of the semicircle)
+        float rightTopX = 300;  // Top-right corner (narrower top)
+
+        island.moveTo(leftBottomX, bottomY);
+        island.lineTo(rightBottomX, bottomY);
+        island.lineTo(rightTopX, topY);
+        island.lineTo(leftTopX, topY);
+        island.close();
 
         canvas.drawPath(trianglePath, paintLightRed);
         canvas.drawPath(trapezoid, paintMahogany);
-
         canvas.drawRect(0, 700, 1600, 1100, paintBlue); //draws the ocean
         canvas.drawRect(825, 300, 850, 600, paintBlack); //draws the mast
-
         canvas.drawOval(100, 100, 300, 300, paintYellow);
+        canvas.drawPath(island, paintForestGreen); //draws the island
     }
 }
 

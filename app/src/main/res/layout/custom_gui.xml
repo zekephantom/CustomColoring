@@ -14,15 +14,21 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Custom Color"
+            android:text="@string/title"
             android:textColor="@color/black"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="R" />
 
             <SeekBar
                 android:id="@+id/redSeek"
@@ -31,10 +37,11 @@
                 android:gravity="top|center" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/redSeekNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="R" />
+                android:text="TextView" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -42,6 +49,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_weight="0.5">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="G" />
 
             <SeekBar
                 android:id="@+id/greenSeek"
@@ -49,10 +62,11 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/blueSeekNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="G" />
+                android:text="TextView" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -61,16 +75,23 @@
             android:orientation="vertical"
             android:layout_weight="0.5">
 
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="B" />
+
             <SeekBar
                 android:id="@+id/blueSeek"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/greenSeekNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="B" />
+                android:text="TextView" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -86,10 +107,11 @@
                 android:text="Current Element: " />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/dispElem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="(*Tap on the Picture*)"
+                android:textSize="18sp"/>
         </LinearLayout>
 
     </LinearLayout>

@@ -10,14 +10,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-/*
-* This class is the new MainActivity
-* */
+/**
+ * Author: Ezekiel Rafanan
+ * Date: 22 September 2024
+ *
+ * MainActivity class but renamed to CustomGUI
+ *
+ */
 public class CustomGUI extends AppCompatActivity {
 
     private SeekBar redSeekBar, greenSeekBar, blueSeekBar;
     private drawObject drawingSurface;
-    private TextView showElement;
+    private TextView showElement, redNum, greenNum, blueNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -28,10 +32,20 @@ public class CustomGUI extends AppCompatActivity {
         redSeekBar = findViewById(R.id.redSeek);
         greenSeekBar = findViewById(R.id.greenSeek);
         blueSeekBar = findViewById(R.id.blueSeek);
-        showElement = findViewById(R.id.textView2);
+
+        redSeekBar.setMax(255);
+        greenSeekBar.setMax(255);
+        blueSeekBar.setMax(255);
+
+        showElement = findViewById(R.id.dispElem);
+        redNum = findViewById(R.id.redSeekNum);
+        greenNum = findViewById(R.id.greenSeekNum);
+        blueNum = findViewById(R.id.blueSeekNum);
+
         drawingSurface = findViewById(R.id.surfaceView);
 
-        ColorTouch touchListen = new ColorTouch(redSeekBar, greenSeekBar,blueSeekBar, showElement);
+        ColorTouch touchListen = new ColorTouch(redSeekBar, greenSeekBar,blueSeekBar, showElement, redNum, greenNum, blueNum);
+
         drawingSurface.setOnTouchListener(touchListen);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.custom), (v, insets) -> {
