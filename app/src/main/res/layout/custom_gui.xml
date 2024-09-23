@@ -40,7 +40,7 @@
                 android:id="@+id/redSeekNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="" />
 
         </LinearLayout>
 
@@ -62,10 +62,10 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/blueSeekNum"
+                android:id="@+id/greenSeekNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="" />
 
         </LinearLayout>
 
@@ -87,10 +87,10 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/greenSeekNum"
+                android:id="@+id/blueSeekNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="" />
 
         </LinearLayout>
 

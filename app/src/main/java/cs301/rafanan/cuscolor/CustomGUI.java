@@ -45,8 +45,57 @@ public class CustomGUI extends AppCompatActivity {
         drawingSurface = findViewById(R.id.surfaceView);
 
         ColorTouch touchListen = new ColorTouch(redSeekBar, greenSeekBar,blueSeekBar, showElement, redNum, greenNum, blueNum);
-
         drawingSurface.setOnTouchListener(touchListen);
+
+
+        // The following three blocks of code allows the respective SeekBar to display the value into a TextView widget
+        redSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // Update the redSeekNum TextView with the current progress
+                redNum.setText(String.valueOf(progress));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        greenSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // Update the redSeekNum TextView with the current progress
+                greenNum.setText(String.valueOf(progress));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        blueSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                blueNum.setText(String.valueOf(progress));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.custom), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

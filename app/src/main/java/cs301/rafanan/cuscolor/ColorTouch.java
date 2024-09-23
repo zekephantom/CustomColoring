@@ -75,7 +75,7 @@ public class ColorTouch implements View.OnTouchListener{
             } else if (isPointInRectangle(x, y, seaLeft, seaTop, seaRight, seaBottom)) {
                 setSeekBarFromColor(0xFF0000FF);
                 setTextView("Ocean");
-            } else if(isPointInTrapezoid(x, y, x1, y1, x2, y2, x3, y3, x4, y4)) {
+            } else if(isPointInHull(x, y, x1, y1, x2, y2, x3, y3, x4, y4)) {
                 setSeekBarFromColor(0xFFC4A484);
                 setTextView("Ship Hull");
             } else if (isPointInYellowSun(x, y)) {
@@ -86,7 +86,7 @@ public class ColorTouch implements View.OnTouchListener{
                 setTextView("Island");
             }
             else{
-                setTextView("Air");
+                setTextView("");
             }
         }
 
@@ -147,7 +147,7 @@ public class ColorTouch implements View.OnTouchListener{
     }
 
     // Check if the touch point is inside the hull
-    public boolean isPointInTrapezoid(float px, float py, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
+    public boolean isPointInHull(float px, float py, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
         // Split the trapezoid into two triangles
         boolean inFirstTriangle = isPointInTriangle(px, py, x1, y1, x2, y2, x3, y3);
         boolean inSecondTriangle = isPointInTriangle(px, py, x1, y1, x3, y3, x4, y4);
@@ -170,7 +170,7 @@ public class ColorTouch implements View.OnTouchListener{
         return Math.pow((px - h) / a, 2) + Math.pow((py - k) / b, 2) <= 1;
     }
 
-    // Helper method to check if a point is inside the green trapezoid (island)
+    // Helper method to check if a point is inside the island
     public boolean isPointInIsland(float px, float py) {
         // Trapezoid (island) points
         float leftBottomX = 100;  // Bottom-left corner
