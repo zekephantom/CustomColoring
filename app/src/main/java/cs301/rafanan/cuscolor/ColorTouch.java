@@ -69,6 +69,13 @@ public class ColorTouch implements View.OnTouchListener{
         float seaBottom = 1100;
 
         // Detect if the touch is within certain shapes
+        /*
+        * External Citation
+        * Date: 23 September 2024
+        * Problem: Not familiar with Motion Event
+        * Resource: https://developer.android.com/reference/android/view/MotionEvent
+        * Solution: Read up the documentation
+        * */
         if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_UP) {
             if (isPointInTriangle(x, y, a1, b1, a2, b2, a3, b3)) {
                 setSeekBarFromColor(0xA5FF0000);
