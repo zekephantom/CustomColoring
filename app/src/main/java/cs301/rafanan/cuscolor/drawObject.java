@@ -128,16 +128,16 @@ public class drawObject extends SurfaceView {
         /*
         * Adding the text labels identifying the elements
         * */
-        Paint sun, mast, sail, hull, ocean, island1;
-        sun = new Paint(); mast = new Paint(); sail = new Paint(); hull = new Paint(); ocean = new Paint(); island1 = new Paint();
-        sun.setColor(Color.BLACK); mast.setColor(Color.BLACK); sail.setColor(Color.BLACK); hull.setColor(Color.BLACK); ocean.setColor(Color.BLACK); island1.setColor(Color.BLACK);
+        Paint sun, mast, sail, hull, ocean, new_Island;
+        sun = new Paint(); mast = new Paint(); sail = new Paint(); hull = new Paint(); ocean = new Paint(); new_Island = new Paint();
+        sun.setColor(Color.BLACK); mast.setColor(Color.BLACK); sail.setColor(Color.BLACK); hull.setColor(Color.BLACK); ocean.setColor(Color.BLACK); new_Island.setColor(Color.BLACK);
 
         sun.setTextSize(30);
         mast.setTextSize(30);
         sail.setTextSize(30);
         hull.setTextSize(30);
         ocean.setTextSize(30);
-        island1.setTextSize(30);
+        new_Island.setTextSize(30);
 
         // Define the text to be drawn
         String sunText = "Sun";
@@ -161,7 +161,7 @@ public class drawObject extends SurfaceView {
         canvas.drawText(sailText, sailX, sailY, sail);
         canvas.drawText(shipHullText, hullX, hullY, sail);
         canvas.drawText(oceanText, oceanX, oceanY, sail);
-        canvas.drawText(islandText, islandX, islandY, island1);
+        canvas.drawText(islandText, islandX, islandY, new_Island);
     }
 }
 

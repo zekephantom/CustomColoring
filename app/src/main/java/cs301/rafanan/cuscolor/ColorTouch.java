@@ -1,8 +1,8 @@
 package cs301.rafanan.cuscolor;
 
-/*
-* @author: Ezekiel Rafanan
-* @date: 22 September 2024
+/**
+* Author: Ezekiel Rafanan
+* Date: 22 September 2024
 *
 * This Java file uses OnTouchListener to add functionality whenever the user taps an element and it displays the name on the TextView
 *
@@ -97,6 +97,13 @@ public class ColorTouch implements View.OnTouchListener{
         return true;
     }
 
+    /*
+    * External Citation
+    * Date: 22 September 2024
+    * Problem: I don't know much about the setProgress() method
+    * Resource: https://developer.android.com/reference/android/widget/ProgressBar
+    * Solution: I read up the Android documentation and implemented setProgress into my code.
+    * */
     private void setSeekBarFromColor(int color) {
         int red = Color.red(color);
         int green = Color.green(color);
