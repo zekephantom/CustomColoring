@@ -1,20 +1,16 @@
 package cs301.rafanan.cuscolor;
 
-/**
-* Author: Ezekiel Rafanan
-* Date: 22 September 2024
-*
-* This Java file uses OnTouchListener to add functionality whenever the user taps an element and it displays the name on the TextView
-*
-* */
-
-
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.SeekBar;
 import android.graphics.Color;
 import android.widget.TextView;
 
+/**
+ * Author: Ezekiel Rafanan
+ * Date: 22 September 2024
+ * This Java file uses OnTouchListener to add functionality whenever the user taps an element and it displays the name on the TextView
+ * */
 public class ColorTouch implements View.OnTouchListener{
     private SeekBar redSeekBar, greenSeekBar, blueSeekBar;
     private TextView showElement, redNum, greenNum, blueNum;

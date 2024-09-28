@@ -8,9 +8,7 @@ import android.graphics.*;
 /**
  * Author: Ezekiel Rafanan
  * Date: 22 September 2024
- *
  * This Java file basically draws the elements onto SurfaceView.
- *
  */
 public class drawObject extends SurfaceView {
     private Paint sailPaint, oceanPaint, sunPaint
