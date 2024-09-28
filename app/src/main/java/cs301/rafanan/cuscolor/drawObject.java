@@ -13,8 +13,8 @@ import android.graphics.*;
  *
  */
 public class drawObject extends SurfaceView {
-    private Paint paintLightRed, paintBlue, paintWhite, paintYellow
-            ,paintMahogany, paintBlack, paintForestGreen;
+    private Paint sailPaint, oceanPaint, sunPaint
+            , hullPaint, mastPaint, islandPaint;
 
     public drawObject(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -22,33 +22,53 @@ public class drawObject extends SurfaceView {
         setWillNotDraw(false);
         setBackgroundColor(Color.WHITE);
 
-        paintLightRed = new Paint();
-        paintLightRed.setColor(0xA5FF0000);
-        paintLightRed.setStyle(Paint.Style.FILL);
+        sailPaint = new Paint();
+        sailPaint.setColor(0xA5FF0000);
+        sailPaint.setStyle(Paint.Style.FILL);
 
-        paintBlue = new Paint();
-        paintBlue.setColor(0xFF0000FF);
-        paintBlue.setStyle(Paint.Style.FILL);
+        oceanPaint = new Paint();
+        oceanPaint.setColor(0xFF0000FF);
+        oceanPaint.setStyle(Paint.Style.FILL);
 
-        paintWhite = new Paint();
-        paintWhite.setColor(0xFFFFFFFF);
-        paintWhite.setStyle(Paint.Style.FILL);
+        sunPaint = new Paint();
+        sunPaint.setColor(0xFFFFFF00);
+        sunPaint.setStyle(Paint.Style.FILL);
 
-        paintYellow = new Paint();
-        paintYellow.setColor(0xFFFFFF00);
-        paintYellow.setStyle(Paint.Style.FILL);
+        hullPaint = new Paint();
+        hullPaint.setColor(0xFFC4A484);
+        hullPaint.setStyle(Paint.Style.FILL);
 
-        paintMahogany = new Paint();
-        paintMahogany.setColor(0xFFC4A484);
-        paintMahogany.setStyle(Paint.Style.FILL);
+        mastPaint = new Paint();
+        mastPaint.setColor(0xFF000000);
+        mastPaint.setStyle(Paint.Style.FILL);
 
-        paintBlack = new Paint();
-        paintBlack.setColor(0xFF000000);
-        paintBlack.setStyle(Paint.Style.FILL);
+        islandPaint = new Paint();
+        islandPaint.setColor(0xFF228B22);
+        islandPaint.setStyle(Paint.Style.FILL);
+    }
 
-        paintForestGreen = new Paint();
-        paintForestGreen.setColor(0xFF228B22);
-        paintForestGreen.setStyle(Paint.Style.FILL);
+    public void updateElementColor(String element, int color) {
+        switch (element) {
+            case "Sail":
+                sailPaint.setColor(color);
+                break;
+            case "Mast":
+                mastPaint.setColor(color);
+                break;
+            case "Ocean":
+                oceanPaint.setColor(color);
+                break;
+            case "Hull":
+                hullPaint.setColor(color);
+                break;
+            case "Sun":
+                sunPaint.setColor(color);
+                break;
+            case "Island":
+                islandPaint.setColor(color);
+                break;
+        }
+        invalidate();  // Redraw the view with the updated color
     }
 
     @Override
@@ -117,12 +137,12 @@ public class drawObject extends SurfaceView {
         island.close();
         
         
-        canvas.drawPath(shipSail, paintLightRed); //draws the ship's sail
-        canvas.drawPath(trapezoid, paintMahogany); //draws the ship's hull
-        canvas.drawRect(0, 700, 1600, 1100, paintBlue); //draws the ocean
-        canvas.drawRect(825, 300, 850, 600, paintBlack); //draws the mast
-        canvas.drawOval(100, 100, 300, 300, paintYellow);
-        canvas.drawPath(island, paintForestGreen); //draws the island
+        canvas.drawPath(shipSail, sailPaint); //draws the ship's sail
+        canvas.drawPath(trapezoid, hullPaint); //draws the ship's hull
+        canvas.drawRect(0, 700, 1600, 1100, oceanPaint); //draws the ocean
+        canvas.drawRect(825, 300, 850, 600, mastPaint); //draws the mast
+        canvas.drawOval(100, 100, 300, 300, sunPaint);
+        canvas.drawPath(island, islandPaint); //draws the island
 
         
         /*

@@ -1,5 +1,6 @@
 package cs301.rafanan.cuscolor;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -47,54 +48,43 @@ public class CustomGUI extends AppCompatActivity {
         ColorTouch touchListen = new ColorTouch(redSeekBar, greenSeekBar,blueSeekBar, showElement, redNum, greenNum, blueNum);
         drawingSurface.setOnTouchListener(touchListen);
 
-
-        // The following three blocks of code allows the respective SeekBar to display the value into a TextView widget
-        redSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        // Set listeners to update color on SeekBar change
+        SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // Update the redSeekNum TextView with the current progress
-                redNum.setText(String.valueOf(progress));
+                if (fromUser) {
+                    // Get the last tapped element from ColorTouch
+                    String lastTappedElement = touchListen.getLastTappedElement();
+                    redNum.setText(String.valueOf(redSeekBar.getProgress()));
+                    greenNum.setText(String.valueOf(greenSeekBar.getProgress()));
+                    blueNum.setText(String.valueOf(blueSeekBar.getProgress()));
+
+                    if (lastTappedElement != null) {
+                        // Get the RGB values from SeekBars
+                        int red = redSeekBar.getProgress();
+                        int green = greenSeekBar.getProgress();
+                        int blue = blueSeekBar.getProgress();
+                        int color = Color.rgb(red, green, blue);
+
+                        // Update the drawing surface with the new color
+                        drawingSurface.updateElementColor(lastTappedElement, color);
+                    }
+
+                }
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
-        });
+        };
 
-        greenSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // Update the redSeekNum TextView with the current progress
-                greenNum.setText(String.valueOf(progress));
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        blueSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                blueNum.setText(String.valueOf(progress));
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
+        redSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
+        greenSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
+        blueSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.custom), (v, insets) -> {

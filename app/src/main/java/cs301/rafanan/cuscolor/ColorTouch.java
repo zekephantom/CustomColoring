@@ -18,7 +18,7 @@ import android.widget.TextView;
 public class ColorTouch implements View.OnTouchListener{
     private SeekBar redSeekBar, greenSeekBar, blueSeekBar;
     private TextView showElement, redNum, greenNum, blueNum;
-
+    private String lastTappedElement;
 
     public ColorTouch(SeekBar redSeekBar, SeekBar greenSeekBar, SeekBar blueSeekBar, TextView showElement, TextView redNum, TextView greenNum, TextView blueNum) {
         this.redSeekBar = redSeekBar;
@@ -28,6 +28,7 @@ public class ColorTouch implements View.OnTouchListener{
         this.redNum = redNum;
         this.greenNum = greenNum;
         this.blueNum = blueNum;
+        this.lastTappedElement = null;
     }
 
     /*
@@ -78,30 +79,73 @@ public class ColorTouch implements View.OnTouchListener{
         * */
         if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_UP) {
             if (isPointInTriangle(x, y, a1, b1, a2, b2, a3, b3)) {
+                lastTappedElement = "Sail";
                 setSeekBarFromColor(0xA5FF0000);
                 setTextView("Sail");
+                // Update the RGB text views for the red sail color
+                redNum.setText(String.valueOf(Color.red(0xA5FF0000)));
+                greenNum.setText(String.valueOf(Color.green(0xA5FF0000)));
+                blueNum.setText(String.valueOf(Color.blue(0xA5FF0000)));
+
             } else if (isPointInRectangle(x, y, mastLeft, mastTop, mastRight, mastBottom)) {
+                lastTappedElement = "Mast";
                 setSeekBarFromColor(0xFF000000);
                 setTextView("Mast");
+
+                // Update the RGB text views for the black mast color
+                redNum.setText(String.valueOf(Color.red(0xFF000000)));
+                greenNum.setText(String.valueOf(Color.green(0xFF000000)));
+                blueNum.setText(String.valueOf(Color.blue(0xFF000000)));
+
             } else if (isPointInRectangle(x, y, seaLeft, seaTop, seaRight, seaBottom)) {
+                lastTappedElement = "Ocean";
                 setSeekBarFromColor(0xFF0000FF);
                 setTextView("Ocean");
+
+                // Update the RGB text views for the blue ocean color
+                redNum.setText(String.valueOf(Color.red(0xFF0000FF)));
+                greenNum.setText(String.valueOf(Color.green(0xFF0000FF)));
+                blueNum.setText(String.valueOf(Color.blue(0xFF0000FF)));
+
             } else if(isPointInHull(x, y, x1, y1, x2, y2, x3, y3, x4, y4)) {
+                lastTappedElement = "Hull";
                 setSeekBarFromColor(0xFFC4A484);
                 setTextView("Ship Hull");
+
+                redNum.setText(String.valueOf(Color.red(0xFFC4A484)));
+                greenNum.setText(String.valueOf(Color.green(0xFFC4A484)));
+                blueNum.setText(String.valueOf(Color.blue(0xFFC4A484)));
+
             } else if (isPointInYellowSun(x, y)) {
+                lastTappedElement = "Sun";
                 setSeekBarFromColor(0xFFFFFF00);
                 setTextView("Sun");
+
+                redNum.setText(String.valueOf(Color.red(0xFFFFFF00)));
+                greenNum.setText(String.valueOf(Color.green(0xFFFFFF00)));
+                blueNum.setText(String.valueOf(Color.blue(0xFFFFFF00)));
+
             } else if (isPointInIsland(x, y)){
+                lastTappedElement = "Island";
                 setSeekBarFromColor(0xFF228B22);
                 setTextView("Island");
-            }
-            else{
+
+                redNum.setText(String.valueOf(Color.red(0xFF228B22)));
+                greenNum.setText(String.valueOf(Color.green(0xFF228B22)));
+                blueNum.setText(String.valueOf(Color.blue(0xFF228B22)));
+
+            } else {
+                lastTappedElement = null; // No element tapped
                 setTextView("");
             }
         }
 
         return true;
+    }
+
+    // Getter for the last tapped element
+    public String getLastTappedElement() {
+        return lastTappedElement;
     }
 
     /*
