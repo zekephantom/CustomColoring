@@ -45,6 +45,13 @@ public class drawObject extends SurfaceView {
         islandPaint.setStyle(Paint.Style.FILL);
     }
 
+    /*
+    * External Citation
+    * Date: 28 September 2024
+    * Problem: I could not change the color of the element after touch
+    * Resource: ChatGPT
+    * Solution: I used the switch case idea to implement the color change in each element.
+    * */
     public void updateElementColor(String element, int color) {
         switch (element) {
             case "Sail":
@@ -127,14 +134,15 @@ public class drawObject extends SurfaceView {
         float topY = 650;  // Top of the trapezoid (same Y as the top of the semicircle)
         float rightTopX = 300;  // Top-right corner (narrower top)
 
-        
+
+        //Creates the outline for drawing the trapezoid which will then be labeled as island
         island.moveTo(leftBottomX, bottomY);
         island.lineTo(rightBottomX, bottomY);
         island.lineTo(rightTopX, topY);
         island.lineTo(leftTopX, topY);
         island.close();
-        
-        
+
+
         canvas.drawPath(shipSail, sailPaint); //draws the ship's sail
         canvas.drawPath(trapezoid, hullPaint); //draws the ship's hull
         canvas.drawRect(0, 700, 1600, 1100, oceanPaint); //draws the ocean
@@ -173,7 +181,7 @@ public class drawObject extends SurfaceView {
         float oceanX, oceanY; oceanX = 1300; oceanY = 685;
         float islandX, islandY; islandX = 160; islandY = 640;
 
-        // Draw the text on canvas
+        // Draw the text labels on canvas
         canvas.drawText(sunText, sunX, sunY, sun);
         canvas.drawText(mastText, mastX, mastY, mast);
         canvas.drawText(sailText, sailX, sailY, sail);

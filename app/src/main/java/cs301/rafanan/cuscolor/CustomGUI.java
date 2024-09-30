@@ -47,6 +47,9 @@ public class CustomGUI extends AppCompatActivity {
         drawingSurface.setOnTouchListener(touchListen);
 
         // Set listeners to update color on SeekBar change
+        /*
+        *
+        * */
         SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

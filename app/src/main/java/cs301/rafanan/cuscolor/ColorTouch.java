@@ -65,7 +65,7 @@ public class ColorTouch implements View.OnTouchListener{
         float seaRight = 1600;
         float seaBottom = 1100;
 
-        // Detect if the touch is within certain shapes
+
         /*
         * External Citation
         * Date: 23 September 2024
@@ -73,12 +73,20 @@ public class ColorTouch implements View.OnTouchListener{
         * Resource: https://developer.android.com/reference/android/view/MotionEvent
         * Solution: Read up the documentation
         * */
+        // Detect if the touch is within certain shapes
         if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_UP) {
             if (isPointInTriangle(x, y, a1, b1, a2, b2, a3, b3)) {
                 lastTappedElement = "Sail";
                 setSeekBarFromColor(0xA5FF0000);
                 setTextView("Sail");
-                // Update the RGB text views for the red sail color
+                /*
+                *External Citation
+                * Date: 29 September 2024
+                * Problem: The textview widgets do not show their current value as I move the sliders. This is when I am changing the color of an element, like the sail.
+                * Resource: ChatGPT
+                * Solution: I used ChatGPT's example code for this if statement and other if statements.
+                * */
+                //Update the RGB text views for the red sail color
                 redNum.setText(String.valueOf(Color.red(0xA5FF0000)));
                 greenNum.setText(String.valueOf(Color.green(0xA5FF0000)));
                 blueNum.setText(String.valueOf(Color.blue(0xA5FF0000)));
@@ -139,7 +147,7 @@ public class ColorTouch implements View.OnTouchListener{
         return true;
     }
 
-    // Getter for the last tapped element
+    // Getter method for the last tapped element
     public String getLastTappedElement() {
         return lastTappedElement;
     }
@@ -147,7 +155,7 @@ public class ColorTouch implements View.OnTouchListener{
     /*
     * External Citation
     * Date: 22 September 2024
-    * Problem: I don't know much about the setProgress() method
+    * Problem: I cannot figure out how to set the setProgress() method
     * Resource: https://developer.android.com/reference/android/widget/ProgressBar
     * Solution: I read up the Android documentation and implemented setProgress into my code.
     * */
@@ -189,9 +197,9 @@ public class ColorTouch implements View.OnTouchListener{
         float dot12 = v1x * v2x + v1y * v2y;
 
         // Compute barycentric coordinates
-        float bary_coor = (dot00 * dot11 - dot01 * dot01);
-        if (bary_coor == 0) return false;  // Avoid division by zero
-        float inverse_bary = 1 / bary_coor;
+        float barycentric = (dot00 * dot11 - dot01 * dot01);
+        if (barycentric == 0) return false;  // Avoid division by zero
+        float inverse_bary = 1 / barycentric;
         float u = (dot11 * dot02 - dot01 * dot12) * inverse_bary;
         float v = (dot00 * dot12 - dot01 * dot02) * inverse_bary;
 
