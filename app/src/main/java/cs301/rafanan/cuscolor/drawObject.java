@@ -11,8 +11,7 @@ import android.graphics.*;
  * This Java file basically draws the elements onto SurfaceView.
  */
 public class drawObject extends SurfaceView {
-    private Paint sailPaint, oceanPaint, sunPaint
-            , hullPaint, mastPaint, islandPaint;
+    private Paint sailPaint, oceanPaint, sunPaint,hullPaint, mastPaint, islandPaint;
 
     public drawObject(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -50,7 +49,7 @@ public class drawObject extends SurfaceView {
     * Date: 28 September 2024
     * Problem: I could not change the color of the element after touch
     * Resource: ChatGPT
-    * Solution: I used the switch case idea to implement the color change in each element.
+    * Solution: Provided me the invalidate() method which redraws or recolors the element. I also used the switch(case) suggestion.
     * */
     public void updateElementColor(String element, int color) {
         switch (element) {
@@ -86,13 +85,12 @@ public class drawObject extends SurfaceView {
          *External Citation
          * Date: 19 September 2024
          * Problem: Could not figure out how to draw a trapezoid and do translation shifts
-         * Resource: https://stackoverflow.com/questions/25768037/how-to-build-a-trapezoid-shape-in-android
-         * Solution:
-         *
+         * Resource: https://stackoverflow.com/questions/25768037/how-to-build-a-trapezoid-shape-in-android, ChatGPT
+         * Solution: Used their example code, asked AI on how to improved my code - AI gave me suggestions
          */
         int shiftY = -100;
 
-        //Trapezoid coordinates
+        //Trapezoid (for ship hull) coordinates
         float x1 = 475;  // Bottom-left corner
         float y1 = 600;
         float x2 = 1225; // Bottom-right corner
@@ -101,16 +99,14 @@ public class drawObject extends SurfaceView {
         float y3 = 700;
         float x4 = 625;  // Top-left corner
         float y4 = 700;
-
         
-        // Flips the trapezoid upside down by swapping the y-values of top and bottom points
+        // Flips the ship hull upside down by swapping the y-values of top and bottom points
         shipHull.moveTo(x1, y1); // Bottom-left corner
         shipHull.lineTo(x2, y2); // Bottom-right corner
         shipHull.lineTo(x3, y3); // Top-right corner
         shipHull.lineTo(x4, y4); // Top-left corner
         shipHull.close();
 
-        
         // Define the three points of the triangle (sail)
         float a1 = 500; // Bottom-left point
         float b1 = 550;
@@ -119,7 +115,6 @@ public class drawObject extends SurfaceView {
         float a3 = 825; // Top-right point
         float b3 = 300;
 
-        
         shipSail.moveTo(a1, b1); // Move to the first point (bottom-left corner)
         shipSail.lineTo(a2, b2); // Draw line to the bottom-right corner
         shipSail.lineTo(a3, b3); // Draw line to the top-right corner
@@ -152,7 +147,7 @@ public class drawObject extends SurfaceView {
 
         
         /*
-        * Adding the text labels identifying the elements
+        * Adding the text labels identifying the elements. Note: I am not sure if I needed to do this for the homework assignment
         * */
         Paint sun, mast, sail, hull, ocean, new_Island;
         sun = new Paint(); mast = new Paint(); sail = new Paint(); hull = new Paint(); ocean = new Paint(); new_Island = new Paint();
@@ -167,7 +162,7 @@ public class drawObject extends SurfaceView {
 
         // Define the text to be drawn
         String sunText = "Sun";
-        String mastText = "Ship Mast";
+        String mastText = "Mast";
         String sailText = "Sail";
         String shipHullText = "Hull";
         String oceanText = "Ocean";

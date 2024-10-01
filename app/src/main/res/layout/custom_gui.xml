@@ -28,7 +28,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="R" />
+                android:text="@string/red" />
 
             <SeekBar
                 android:id="@+id/redSeek"
@@ -54,7 +54,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="G" />
+                android:text="@string/green" />
 
             <SeekBar
                 android:id="@+id/greenSeek"
@@ -79,7 +79,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="B" />
+                android:text="@string/blue" />
 
             <SeekBar
                 android:id="@+id/blueSeek"
@@ -104,13 +104,13 @@
                 android:id="@+id/currElem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Current Element: " />
+                android:text="@string/currElem" />
 
             <TextView
                 android:id="@+id/dispElem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="(*Tap on the Picture*)"
+                android:text="@string/tapPic"
                 android:textSize="18sp"/>
         </LinearLayout>
 

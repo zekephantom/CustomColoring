@@ -11,6 +11,7 @@ import android.widget.TextView;
  * Date: 22 September 2024
  * This Java file uses OnTouchListener to add functionality whenever the user taps an element and it displays the name on the TextView
  * */
+
 public class ColorTouch implements View.OnTouchListener{
     private SeekBar redSeekBar, greenSeekBar, blueSeekBar;
     private TextView showElement, redNum, greenNum, blueNum;
@@ -71,10 +72,10 @@ public class ColorTouch implements View.OnTouchListener{
         * Date: 23 September 2024
         * Problem: Not familiar with Motion Event
         * Resource: https://developer.android.com/reference/android/view/MotionEvent
-        * Solution: Read up the documentation
+        * Solution: Read up the documentation, followed the template for MotionEvent.ACTION_DOWN and MotionEvent.ACTION_UP
         * */
 
-        // Detect if the touch is within certain shapes
+        // Behavior of the program when the user touches the element
         if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_UP) {
             if (isPointInTriangle(x, y, a1, b1, a2, b2, a3, b3)) {
                 lastTappedElement = "Sail";
@@ -86,7 +87,7 @@ public class ColorTouch implements View.OnTouchListener{
                 * Date: 29 September 2024
                 * Problem: The textview widgets do not show their current value as I move the sliders. This is when I am changing the color of an element, like the sail.
                 * Resource: ChatGPT
-                * Solution: I used ChatGPT's example code for this if statement and other if statements.
+                * Solution: ChatGPT recommended to use setText methods inside the if-statements; followed their example code.
                 * */
 
                 //Update the RGB text views for the red sail color
@@ -94,10 +95,12 @@ public class ColorTouch implements View.OnTouchListener{
                 greenNum.setText(String.valueOf(Color.green(0xA5FF0000)));
                 blueNum.setText(String.valueOf(Color.blue(0xA5FF0000)));
 
+
             } else if (isPointInRectangle(x, y, mastLeft, mastTop, mastRight, mastBottom)) {
                 lastTappedElement = "Mast";
                 setSeekBarFromColor(0xFF000000);
                 setTextView("Mast");
+
 
                 // Update the RGB text views for the black mast color
                 redNum.setText(String.valueOf(Color.red(0xFF000000)));
@@ -109,6 +112,7 @@ public class ColorTouch implements View.OnTouchListener{
                 setSeekBarFromColor(0xFF0000FF);
                 setTextView("Ocean");
 
+
                 // Update the RGB text views for the blue ocean color
                 redNum.setText(String.valueOf(Color.red(0xFF0000FF)));
                 greenNum.setText(String.valueOf(Color.green(0xFF0000FF)));
@@ -119,15 +123,17 @@ public class ColorTouch implements View.OnTouchListener{
                 setSeekBarFromColor(0xFFC4A484);
                 setTextView("Ship Hull");
 
+                // Update the RGB text views for ship hull
                 redNum.setText(String.valueOf(Color.red(0xFFC4A484)));
                 greenNum.setText(String.valueOf(Color.green(0xFFC4A484)));
                 blueNum.setText(String.valueOf(Color.blue(0xFFC4A484)));
 
-            } else if (isPointInYellowSun(x, y)) {
+            } else if (isPointInSun(x, y)) {
                 lastTappedElement = "Sun";
                 setSeekBarFromColor(0xFFFFFF00);
                 setTextView("Sun");
 
+                // Update the RGB text views for the sun
                 redNum.setText(String.valueOf(Color.red(0xFFFFFF00)));
                 greenNum.setText(String.valueOf(Color.green(0xFFFFFF00)));
                 blueNum.setText(String.valueOf(Color.blue(0xFFFFFF00)));
@@ -137,32 +143,32 @@ public class ColorTouch implements View.OnTouchListener{
                 setSeekBarFromColor(0xFF228B22);
                 setTextView("Island");
 
+                //Update the RGB text values for island
                 redNum.setText(String.valueOf(Color.red(0xFF228B22)));
                 greenNum.setText(String.valueOf(Color.green(0xFF228B22)));
                 blueNum.setText(String.valueOf(Color.blue(0xFF228B22)));
 
             } else {
+                //This code is for the remaining white space inside the SurfaceView widget. The white space is not an element.
                 lastTappedElement = null; // No element tapped
                 setTextView("");
             }
         }
-
         return true;
     }
 
     // Getter method for the last tapped element
-    public String getLastTappedElement() {
-        return lastTappedElement;
+    public String getLastTappedElement() {return lastTappedElement;
     }
+
 
     /*
     * External Citation
     * Date: 22 September 2024
-    * Problem: I cannot figure out how to set the setProgress() method
-    * Resource: https://developer.android.com/reference/android/widget/ProgressBar
-    * Solution: I read up the Android documentation and implemented setProgress into my code.
+    * Problem: Could not figure out how to get the red, green, and blue channels without hardcoding
+    * Resource: https://stackoverflow.com/questions/42336425/get-red-blue-or-green-channel-from-android-color-object, ChatGPT
+    * Solution: Used their example code. AI gave me a suggestion on how to connect the channels to setProgress() method
     * */
-
     private void setSeekBarFromColor(int color) {
         int red = Color.red(color);
         int green = Color.green(color);
@@ -173,17 +179,16 @@ public class ColorTouch implements View.OnTouchListener{
         blueSeekBar.setProgress(blue);
     }
 
-    private void setTextView(String TV) {
-        showElement.setText(TV);
+    private void setTextView(String TV) {showElement.setText(TV);
     }
 
-   /*
-   External Citation
-    Date: 20 September 2024
-    Problem: I could not figure out how to detect if a user touches any point within the triangle (red sail)
-    Resource: https://stackoverflow.com/questions/11162059/trying-to-get-position-in-barycentric-i-think, ChatGPT
-    Solution: I read the website, based their given code on my own and also asked AI to provide example code and suggestions
-    */
+    /*
+    * External Citation
+    *Date: 20 September 2024
+    *Problem: I could not figure out how to detect if a user touches any point within the triangle (red sail)
+    *Resource: https://stackoverflow.com/questions/11162059/trying-to-get-position-in-barycentric-i-think, ChatGPT
+    *Solution: I read the website, based their given code on my own and also asked AI to provide example code and suggestions. AI suggested to use Barycentric Coordinate system.
+    * */
     public boolean isPointInTriangle(float px, float py, float ax, float ay, float bx, float by, float cx, float cy) {
         // Calculate the vectors
         float v0x = cx - ax;
@@ -202,10 +207,12 @@ public class ColorTouch implements View.OnTouchListener{
 
         // Compute barycentric coordinates
         float barycentric = (dot00 * dot11 - dot01 * dot01);
+
         if (barycentric == 0) return false;  // Avoid division by zero
-        float inverse_bary = 1 / barycentric;
-        float u = (dot11 * dot02 - dot01 * dot12) * inverse_bary;
-        float v = (dot00 * dot12 - dot01 * dot02) * inverse_bary;
+        float inv_barycentric = 1 / barycentric;
+
+        float u = (dot11 * dot02 - dot01 * dot12) * inv_barycentric;
+        float v = (dot00 * dot12 - dot01 * dot02) * inv_barycentric;
 
         // Check if point is in the red sail
         return (u >= 0) && (v >= 0) && (u + v < 1);
@@ -227,7 +234,7 @@ public class ColorTouch implements View.OnTouchListener{
     }
 
     // Checks if a point is inside the yellow oval (sun)
-    public boolean isPointInYellowSun(float px, float py) {
+    public boolean isPointInSun(float px, float py) {
         // Center of the oval
         float h = 200; // Center X
         float k = 200; // Center Y

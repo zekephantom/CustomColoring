@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 /**
  * Author: Ezekiel Rafanan
  * Date: 22 September 2024
- * MainActivity class but renamed to CustomGUI
+ * Description: MainActivity class but renamed to CustomGUI
  */
 public class CustomGUI extends AppCompatActivity {
 

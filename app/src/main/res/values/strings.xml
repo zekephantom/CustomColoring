@@ -2,4 +2,9 @@
     <string name="app_name">My Application</string>
     <string name="text1">Hello World!</string>
     <string name="title">Custom Color</string>
+    <string name="red">R</string>
+    <string name="green">G</string>
+    <string name="blue">B</string>
+    <string name="currElem">Current Element: </string>
+    <string name="tapPic">(*Tap on the Picture*)</string>
 </resources>
