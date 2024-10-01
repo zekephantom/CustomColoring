@@ -49,7 +49,7 @@ public class drawObject extends SurfaceView {
     * Date: 28 September 2024
     * Problem: I could not change the color of the element after touch
     * Resource: ChatGPT
-    * Solution: Provided me the invalidate() method which redraws or recolors the element. I also used the switch(case) suggestion.
+    * Solution: Provided me the invalidate() method which redraws or recolors the element. I also followed the switch(case) suggestion.
     * */
     public void updateElementColor(String element, int color) {
         switch (element) {

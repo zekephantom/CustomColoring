@@ -179,8 +179,7 @@ public class ColorTouch implements View.OnTouchListener{
         blueSeekBar.setProgress(blue);
     }
 
-    private void setTextView(String TV) {showElement.setText(TV);
-    }
+    private void setTextView(String TV) {showElement.setText(TV);}
 
     /*
     * External Citation
@@ -218,21 +217,47 @@ public class ColorTouch implements View.OnTouchListener{
         return (u >= 0) && (v >= 0) && (u + v < 1);
     }
 
+
+    /*
+    * External Citation
+    * Date: 30 September 2024
+    * Problem: I have two rectangles for mast and the ocean, so I could not figure out how to check if a user
+    *       touches either one of those rectangles, and is identified as either the mast or ocean.
+    * Resource: ChatGPT
+    * Solution: Provided me the correction for my earlier code so I used that correction.
+    * */
     // Checks if a point is inside the mast
-    public boolean isPointInRectangle(float px, float py, float left, float top, float right, float bottom) {
-        return (px >= left && px <= right && py >= top && py <= bottom);
+    public boolean isPointInRectangle(float pointX, float pointY, float left, float top, float right, float bottom) {
+        return (pointX >= left && pointX <= right && pointY >= top && pointY <= bottom);
     }
 
+
+    /*
+    * External Citation
+    * Date: 30 September 2024
+    * Problem: I have two trapezoids and I have to figure out the correct bounds for touchListener should the user
+    *       want to select the hull or island
+    * Resource: ChatGPT
+    * Solution: ChatGPT corrected my earlier code and the correction worked.
+    * */
     // Check if the touch point is inside the hull
-    public boolean isPointInHull(float px, float py, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
+    public boolean isPointInHull(float pointX, float pointY, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
         // Split the trapezoid into two triangles
-        boolean inFirstTriangle = isPointInTriangle(px, py, x1, y1, x2, y2, x3, y3);
-        boolean inSecondTriangle = isPointInTriangle(px, py, x1, y1, x3, y3, x4, y4);
+        boolean inFirstTriangle = isPointInTriangle(pointX, pointY, x1, y1, x2, y2, x3, y3);
+        boolean inSecondTriangle = isPointInTriangle(pointX, pointY, x1, y1, x3, y3, x4, y4);
 
         // If the point is in either triangle, it's in the trapezoid
         return inFirstTriangle || inSecondTriangle;
     }
 
+
+    /*
+    * External Citation
+    * Date: 29 September 2024
+    * Problem: I had no idea at first how to check if a user picked the Sun, since the element is a round shape
+    * Resource: ChatGPT, https://stackoverflow.com/questions/22663479/how-to-make-a-ellipse-from-points
+    * Solution: Read up what ChatGPT and StackOverflow suggested, and typed the code based on their examples
+    * */
     // Checks if a point is inside the yellow oval (sun)
     public boolean isPointInSun(float px, float py) {
         // Center of the oval
@@ -247,7 +272,14 @@ public class ColorTouch implements View.OnTouchListener{
         return Math.pow((px - h) / a, 2) + Math.pow((py - k) / b, 2) <= 1;
     }
 
-    // Helper method to check if a point is inside the island
+    /*
+    * External Citation
+    * Date: 29 September 2024
+    * Problem: The island element cannot be detected as the user pressed on it, so something
+    *   must be wrong with the logic
+    * Resource: ChatGPT
+    * Solution: ChatGPT provided me the correction and I used that correction to my initial code.
+    * */
     public boolean isPointInIsland(float px, float py) {
         // Trapezoid (island) points
         float leftBottomX = 100;  // Bottom-left corner

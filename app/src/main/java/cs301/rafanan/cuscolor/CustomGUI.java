@@ -29,12 +29,12 @@ public class CustomGUI extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.custom_gui);
 
-        //Seekbar widgets
+        //Seekbar widgets assigned to variables
         redSeekBar = findViewById(R.id.redSeek);
         greenSeekBar = findViewById(R.id.greenSeek);
         blueSeekBar = findViewById(R.id.blueSeek);
 
-        //Sets the range from 0 to 255
+        //Sets the range of seekbar widgets from 0 to 255
         redSeekBar.setMax(255);
         greenSeekBar.setMax(255);
         blueSeekBar.setMax(255);
@@ -48,7 +48,6 @@ public class CustomGUI extends AppCompatActivity {
         drawingSurface = findViewById(R.id.surfaceView);
 
         ColorTouch touchListen = new ColorTouch(redSeekBar, greenSeekBar,blueSeekBar, currentElem, redNum, greenNum, blueNum);
-
         drawingSurface.setOnTouchListener(touchListen);
 
         /*
@@ -59,7 +58,6 @@ public class CustomGUI extends AppCompatActivity {
         * Resource: ChatGPT, https://developer.android.com/reference/android/widget/SeekBar.OnSeekBarChangeListener
         * Solution: I used the if-statement approach to combining the functionality.
         * */
-
         SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
