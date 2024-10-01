@@ -78,7 +78,7 @@ public class drawObject extends SurfaceView {
 
     @Override
     protected void onDraw(Canvas canvas){
-        Path trapezoid = new Path();
+        Path shipHull = new Path();
         Path shipSail = new Path();
         Path island = new Path();
         
@@ -104,11 +104,11 @@ public class drawObject extends SurfaceView {
 
         
         // Flips the trapezoid upside down by swapping the y-values of top and bottom points
-        trapezoid.moveTo(x1, y1); // Bottom-left corner
-        trapezoid.lineTo(x2, y2); // Bottom-right corner
-        trapezoid.lineTo(x3, y3); // Top-right corner
-        trapezoid.lineTo(x4, y4); // Top-left corner
-        trapezoid.close();
+        shipHull.moveTo(x1, y1); // Bottom-left corner
+        shipHull.lineTo(x2, y2); // Bottom-right corner
+        shipHull.lineTo(x3, y3); // Top-right corner
+        shipHull.lineTo(x4, y4); // Top-left corner
+        shipHull.close();
 
         
         // Define the three points of the triangle (sail)
@@ -144,7 +144,7 @@ public class drawObject extends SurfaceView {
 
 
         canvas.drawPath(shipSail, sailPaint); //draws the ship's sail
-        canvas.drawPath(trapezoid, hullPaint); //draws the ship's hull
+        canvas.drawPath(shipHull, hullPaint); //draws the ship's hull
         canvas.drawRect(0, 700, 1600, 1100, oceanPaint); //draws the ocean
         canvas.drawRect(825, 300, 850, 600, mastPaint); //draws the mast
         canvas.drawOval(100, 100, 300, 300, sunPaint);

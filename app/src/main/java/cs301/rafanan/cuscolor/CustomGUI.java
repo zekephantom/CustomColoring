@@ -20,7 +20,8 @@ public class CustomGUI extends AppCompatActivity {
 
     private SeekBar redSeekBar, greenSeekBar, blueSeekBar;
     private drawObject drawingSurface;
-    private TextView showElement, redNum, greenNum, blueNum;
+    private TextView currentElem, redNum, greenNum, blueNum;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -28,28 +29,37 @@ public class CustomGUI extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.custom_gui);
 
+        //Seekbar widgets
         redSeekBar = findViewById(R.id.redSeek);
         greenSeekBar = findViewById(R.id.greenSeek);
         blueSeekBar = findViewById(R.id.blueSeek);
 
+        //Sets the range from 0 to 255
         redSeekBar.setMax(255);
         greenSeekBar.setMax(255);
         blueSeekBar.setMax(255);
 
-        showElement = findViewById(R.id.dispElem);
+        //TextView widgets
+        currentElem = findViewById(R.id.dispElem);
         redNum = findViewById(R.id.redSeekNum);
         greenNum = findViewById(R.id.greenSeekNum);
         blueNum = findViewById(R.id.blueSeekNum);
 
         drawingSurface = findViewById(R.id.surfaceView);
 
-        ColorTouch touchListen = new ColorTouch(redSeekBar, greenSeekBar,blueSeekBar, showElement, redNum, greenNum, blueNum);
+        ColorTouch touchListen = new ColorTouch(redSeekBar, greenSeekBar,blueSeekBar, currentElem, redNum, greenNum, blueNum);
+
         drawingSurface.setOnTouchListener(touchListen);
 
-        // Set listeners to update color on SeekBar change
         /*
-        *
+        * External Citation
+        * Date: 29 September 2024
+        * Problem: Could not combine the functionality of showing the RGB values in TextView while
+        *           changing the color of the element. Also, I do not know much about onProgressChanged() method.
+        * Resource: ChatGPT, https://developer.android.com/reference/android/widget/SeekBar.OnSeekBarChangeListener
+        * Solution: I used the if-statement approach to combining the functionality.
         * */
+
         SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

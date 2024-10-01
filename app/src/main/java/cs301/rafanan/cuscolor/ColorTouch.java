@@ -59,7 +59,7 @@ public class ColorTouch implements View.OnTouchListener{
         float mastRight = 850;
         float mastBottom = 600;
 
-        // Bounds for the sea
+        // Bounds for the ocean
         float seaLeft = 0;
         float seaTop = 700;
         float seaRight = 1600;
@@ -73,12 +73,14 @@ public class ColorTouch implements View.OnTouchListener{
         * Resource: https://developer.android.com/reference/android/view/MotionEvent
         * Solution: Read up the documentation
         * */
+
         // Detect if the touch is within certain shapes
         if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_UP) {
             if (isPointInTriangle(x, y, a1, b1, a2, b2, a3, b3)) {
                 lastTappedElement = "Sail";
                 setSeekBarFromColor(0xA5FF0000);
                 setTextView("Sail");
+
                 /*
                 *External Citation
                 * Date: 29 September 2024
@@ -86,6 +88,7 @@ public class ColorTouch implements View.OnTouchListener{
                 * Resource: ChatGPT
                 * Solution: I used ChatGPT's example code for this if statement and other if statements.
                 * */
+
                 //Update the RGB text views for the red sail color
                 redNum.setText(String.valueOf(Color.red(0xA5FF0000)));
                 greenNum.setText(String.valueOf(Color.green(0xA5FF0000)));
@@ -159,6 +162,7 @@ public class ColorTouch implements View.OnTouchListener{
     * Resource: https://developer.android.com/reference/android/widget/ProgressBar
     * Solution: I read up the Android documentation and implemented setProgress into my code.
     * */
+
     private void setSeekBarFromColor(int color) {
         int red = Color.red(color);
         int green = Color.green(color);
@@ -178,7 +182,7 @@ public class ColorTouch implements View.OnTouchListener{
     Date: 20 September 2024
     Problem: I could not figure out how to detect if a user touches any point within the triangle (red sail)
     Resource: https://stackoverflow.com/questions/11162059/trying-to-get-position-in-barycentric-i-think, ChatGPT
-    Solution: I read the website, based their given code on my own and also asked AI to help me figure things out
+    Solution: I read the website, based their given code on my own and also asked AI to provide example code and suggestions
     */
     public boolean isPointInTriangle(float px, float py, float ax, float ay, float bx, float by, float cx, float cy) {
         // Calculate the vectors
