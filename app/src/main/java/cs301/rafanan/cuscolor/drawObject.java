@@ -77,6 +77,13 @@ public class drawObject extends SurfaceView {
 
     @Override
     protected void onDraw(Canvas canvas){
+        /*
+        * External Citation
+        * Date: 30 September 2024
+        * Problem: I could not figure out how to draw trapezoids and shapes with sides on Android Studio
+        * Resource: https://developer.android.com/reference/android/graphics/Path
+        * Solution: Read up the documentation about the Path class
+        * */
         Path shipHull = new Path();
         Path shipSail = new Path();
         Path island = new Path();
